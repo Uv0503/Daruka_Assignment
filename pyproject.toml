@@ -1,0 +1,51 @@
+[project]
+name = "biodiversity-intelligence"
+version = "0.1.0"
+description = "Evidence-grounded biodiversity decision support prototype"
+readme = "README.md"
+requires-python = ">=3.11,<3.13"
+dependencies = [
+  "beautifulsoup4>=4.12,<5",
+  "chromadb>=1.0,<2",
+  "fastapi==0.115.6",
+  "httpx>=0.27,<1",
+  "openai>=1.70,<2",
+  "pydantic>=2.10,<3",
+  "pydantic-settings>=2.6,<3",
+  "pypdf>=5.0,<6",
+  "PyYAML>=6.0,<7",
+  "rank-bm25>=0.2.2,<1",
+  "sentence-transformers>=3.3,<4",
+  "streamlit==1.56.0",
+  "torch==2.5.1+cpu",
+  "uvicorn[standard]>=0.32,<1",
+]
+
+[dependency-groups]
+dev = [
+  "pytest>=8.3,<9",
+  "ruff>=0.8,<1",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[build-system]
+requires = ["hatchling>=1.26"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["app"]
+
+[tool.uv.sources]
+torch = { index = "pytorch-cpu" }
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true

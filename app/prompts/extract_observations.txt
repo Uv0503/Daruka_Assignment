@@ -1,0 +1,4 @@
+Extract only environmental facts explicitly stated in the latest user message.
+Preserve the raw supporting text. Do not infer values, units, dates, or ecosystem
+type. Distinguish corrections, contradictions, and hypothetical scenarios.
+Return structured data only.

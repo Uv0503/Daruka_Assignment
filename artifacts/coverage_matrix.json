@@ -1,0 +1,417 @@
+{
+  "schema_version": "minilm_wordpiece_175_overlap_25_v1",
+  "release_status": "complete file-level coverage: 20 reviewed cards with acquired source passages",
+  "knowledge_domains": {
+    "pH_and_SOC_context": {
+      "links": [
+        {
+          "card_id": "ev_soil_health_context",
+          "chunk_id": "chunk_44250259192359b46590"
+        },
+        {
+          "card_id": "ev_soil_moisture_interaction",
+          "chunk_id": "chunk_97c5d837fec1ac9e29f6"
+        }
+      ],
+      "support_note": "Context only; neither card turns a soil value into biodiversity or stock estimate."
+    },
+    "dryland_water_budget": {
+      "links": [
+        {
+          "card_id": "ev_dryland_water_budget",
+          "chunk_id": "chunk_b0b61c9d79d4fad072df"
+        },
+        {
+          "card_id": "ev_crop_climate_context",
+          "chunk_id": "chunk_67942504acf99f76c647"
+        }
+      ],
+      "support_note": "Water availability and climate adaptation must be assessed before a conditional crop-diversification pilot."
+    },
+    "pesticide_pressure": {
+      "links": [
+        {
+          "card_id": "ev_pesticide_soil_hazard",
+          "chunk_id": "chunk_91b78932c85a85c57ae6"
+        },
+        {
+          "card_id": "ev_pesticide_scope",
+          "chunk_id": "chunk_6e5c7bf8e6fad3b07747"
+        },
+        {
+          "card_id": "ev_pressure_monitoring",
+          "chunk_id": "chunk_f0d9780a36106f76c530"
+        }
+      ],
+      "support_note": "Supports exposure assessment, not site-specific causation."
+    },
+    "land_conversion_and_habitat": {
+      "links": [
+        {
+          "card_id": "ev_land_change_driver",
+          "chunk_id": "chunk_b5eb5a63169ee798bcce"
+        },
+        {
+          "card_id": "ev_habitat_reconnection",
+          "chunk_id": "chunk_84faddee3ef33db3225d"
+        },
+        {
+          "card_id": "ev_natural_habitat_scope",
+          "chunk_id": "chunk_9908ff909595dcfe8f01"
+        }
+      ],
+      "support_note": "Protection/restoration choices remain locally tailored; no fixed strip or planting prescription is inferred."
+    },
+    "species_richness": {
+      "links": [
+        {
+          "card_id": "ev_habitat_monitoring",
+          "chunk_id": "chunk_7eef06d237715b54fbe5"
+        }
+      ],
+      "status": "offline provenance only; excluded from public responses",
+      "support_note": "The current PDF extraction exposes species richness only as a chart-axis label. It is not used as a public response passage until a semantically complete caption or narrative passage is curated."
+    },
+    "soil_biodiversity_context": {
+      "links": [
+        {
+          "card_id": "ev_management_context",
+          "chunk_id": "chunk_f628b2866d422ebeb9de"
+        },
+        {
+          "card_id": "ev_soil_biology_context",
+          "chunk_id": "chunk_62f97f8c5ec3595e83dc"
+        }
+      ],
+      "support_note": "Agricultural management affects soil biota; this is not a local trend or process-rate estimate."
+    },
+    "cover_crop_water_risk": {
+      "links": [
+        {
+          "card_id": "ev_cover_water_risk",
+          "chunk_id": "chunk_5302752633a247b6ab9d"
+        },
+        {
+          "card_id": "ev_cover_residue_water",
+          "chunk_id": "chunk_5302752633a247b6ab9d"
+        },
+        {
+          "card_id": "ev_cover_termination",
+          "chunk_id": "chunk_09d26c10a085cbb60b67"
+        },
+        {
+          "card_id": "ev_cover_dryland_limit",
+          "chunk_id": "chunk_002271ce54c6cb62f682"
+        }
+      ],
+      "status": "verified against acquired S5",
+      "support_note": "The packet carries both growing-season water depletion risk and the possible post-termination infiltration/evaporation benefit, plus termination and dryland-moisture prerequisites."
+    }
+  },
+  "actions": {
+    "crop_diversification": {
+      "enabled": true,
+      "links": [
+        {
+          "card_id": "ev_diversification_biodiversity",
+          "chunk_id": "chunk_c1d63f91ef1dbca967f1"
+        },
+        {
+          "card_id": "ev_diversification_context",
+          "chunk_id": "chunk_3c0b404e2e9255c7de33"
+        },
+        {
+          "card_id": "ev_dryland_water_budget",
+          "chunk_id": "chunk_b0b61c9d79d4fad072df"
+        }
+      ],
+      "support_note": "All configured evidence cards are required in the retrieval packet before activation."
+    },
+    "conditional_cover_cropping": {
+      "enabled": true,
+      "links": [
+        {
+          "card_id": "ev_cover_water_risk",
+          "chunk_id": "chunk_5302752633a247b6ab9d"
+        },
+        {
+          "card_id": "ev_cover_residue_water",
+          "chunk_id": "chunk_5302752633a247b6ab9d"
+        },
+        {
+          "card_id": "ev_cover_termination",
+          "chunk_id": "chunk_09d26c10a085cbb60b67"
+        },
+        {
+          "card_id": "ev_cover_dryland_limit",
+          "chunk_id": "chunk_002271ce54c6cb62f682"
+        }
+      ],
+      "support_note": "All configured evidence cards are required in the retrieval packet before activation."
+    },
+    "locally_appropriate_habitat_strips": {
+      "enabled": true,
+      "links": [
+        {
+          "card_id": "ev_habitat_reconnection",
+          "chunk_id": "chunk_84faddee3ef33db3225d"
+        },
+        {
+          "card_id": "ev_land_change_driver",
+          "chunk_id": "chunk_b5eb5a63169ee798bcce"
+        },
+        {
+          "card_id": "ev_natural_habitat_scope",
+          "chunk_id": "chunk_9908ff909595dcfe8f01"
+        }
+      ],
+      "support_note": "All configured evidence cards are required in the retrieval packet before activation."
+    },
+    "pesticide_pressure_review": {
+      "enabled": true,
+      "links": [
+        {
+          "card_id": "ev_pesticide_soil_hazard",
+          "chunk_id": "chunk_91b78932c85a85c57ae6"
+        },
+        {
+          "card_id": "ev_pesticide_scope",
+          "chunk_id": "chunk_6e5c7bf8e6fad3b07747"
+        },
+        {
+          "card_id": "ev_pressure_monitoring",
+          "chunk_id": "chunk_f0d9780a36106f76c530"
+        }
+      ],
+      "support_note": "All configured evidence cards are required in the retrieval packet before activation."
+    },
+    "protect_existing_native_habitat": {
+      "enabled": true,
+      "links": [
+        {
+          "card_id": "ev_land_change_driver",
+          "chunk_id": "chunk_b5eb5a63169ee798bcce"
+        },
+        {
+          "card_id": "ev_habitat_reconnection",
+          "chunk_id": "chunk_84faddee3ef33db3225d"
+        },
+        {
+          "card_id": "ev_natural_habitat_scope",
+          "chunk_id": "chunk_9908ff909595dcfe8f01"
+        }
+      ],
+      "support_note": "All configured evidence cards are required in the retrieval packet before activation."
+    }
+  },
+  "interaction_edges": {
+    "diversification_biodiversity_context": {
+      "review_status": "reviewed",
+      "links": [
+        {
+          "card_id": "ev_diversification_biodiversity",
+          "chunk_id": "chunk_c1d63f91ef1dbca967f1"
+        }
+      ],
+      "support_note": "Conditions: cropland diversification is compared with simplified practices"
+    },
+    "growing_cover_crop_uses_water": {
+      "review_status": "reviewed",
+      "links": [
+        {
+          "card_id": "ev_cover_water_risk",
+          "chunk_id": "chunk_5302752633a247b6ab9d"
+        }
+      ],
+      "support_note": "Conditions: cover crop is growing"
+    },
+    "residue_can_conserve_water": {
+      "review_status": "reviewed",
+      "links": [
+        {
+          "card_id": "ev_cover_residue_water",
+          "chunk_id": "chunk_5302752633a247b6ab9d"
+        }
+      ],
+      "support_note": "Conditions: residue remains on soil surface"
+    },
+    "rainfall_distribution_changes_cover_decision": {
+      "review_status": "reviewed",
+      "links": [
+        {
+          "card_id": "ev_cover_termination",
+          "chunk_id": "chunk_09d26c10a085cbb60b67"
+        }
+      ],
+      "support_note": "Conditions: rainfall is low; erratic; or seasonally dry"
+    },
+    "pesticide_exposure_soil_invertebrate_hazard": {
+      "review_status": "reviewed",
+      "links": [
+        {
+          "card_id": "ev_pesticide_soil_hazard",
+          "chunk_id": "chunk_91b78932c85a85c57ae6"
+        }
+      ],
+      "support_note": "Conditions: exposure and taxon-specific risk are assessed"
+    },
+    "land_change_biodiversity_driver": {
+      "review_status": "reviewed",
+      "links": [
+        {
+          "card_id": "ev_land_change_driver",
+          "chunk_id": "chunk_b5eb5a63169ee798bcce"
+        }
+      ],
+      "support_note": "Conditions: native habitat is present or at risk"
+    },
+    "habitat_reconnection_response": {
+      "review_status": "reviewed",
+      "links": [
+        {
+          "card_id": "ev_habitat_reconnection",
+          "chunk_id": "chunk_84faddee3ef33db3225d"
+        }
+      ],
+      "support_note": "Conditions: local habitat and land-use context are assessed"
+    },
+    "soil_biology_carbon_water_context": {
+      "review_status": "reviewed",
+      "links": [
+        {
+          "card_id": "ev_soil_biology_context",
+          "chunk_id": "chunk_62f97f8c5ec3595e83dc"
+        }
+      ],
+      "support_note": "Conditions: soil organism group and response metric remain distinct"
+    }
+  },
+  "known_coverage_gaps": [],
+  "source_chains": {
+    "S1": {
+      "registry_url": "https://www.fao.org/soils-portal/soil-biodiversity/en/",
+      "final_url": "https://www.fao.org/soils-portal/soil-biodiversity/en/",
+      "raw_path": "data/raw/S1.html",
+      "raw_sha256": "4aaa4064f5b42dc3408cb6f1a2d950899e4a9508b9e0be418ba9a87ce74c91de",
+      "reviewed_card_ids": [
+        "ev_soil_biology_context"
+      ],
+      "reviewed_chunk_ids": [
+        "chunk_62f97f8c5ec3595e83dc"
+      ]
+    },
+    "S2": {
+      "registry_url": "https://www.fao.org/soils-portal/soil-biodiversity/soil-conservation-and-agriculture/en/",
+      "final_url": "https://www.fao.org/soils-portal/soil-biodiversity/soil-conservation-and-agriculture/en/",
+      "raw_path": "data/raw/S2.html",
+      "raw_sha256": "0cd86a9cdf6eb429792146a94fead07bc700b9a3b712a479ea0cee8567a70a01",
+      "reviewed_card_ids": [
+        "ev_management_context"
+      ],
+      "reviewed_chunk_ids": [
+        "chunk_f628b2866d422ebeb9de"
+      ]
+    },
+    "S3": {
+      "registry_url": "https://www.fao.org/4/a0100e/a0100e.pdf",
+      "final_url": "https://www.fao.org/4/a0100e/a0100e.pdf",
+      "raw_path": "data/raw/S3.pdf",
+      "raw_sha256": "7264fa4eb56cb886c686769fb081951f36dcc45d7f3516cbd9dcad9809c2ec4c",
+      "reviewed_card_ids": [
+        "ev_soil_moisture_interaction"
+      ],
+      "reviewed_chunk_ids": [
+        "chunk_97c5d837fec1ac9e29f6"
+      ]
+    },
+    "S4": {
+      "registry_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7673676/",
+      "final_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7673676/",
+      "raw_path": "data/raw/S4.html",
+      "raw_sha256": "42b4e201419b1720498fcc624663a38752be72ce3662a778521751b0a51cf84e",
+      "reviewed_card_ids": [
+        "ev_diversification_biodiversity",
+        "ev_diversification_context",
+        "ev_diversification_scope"
+      ],
+      "reviewed_chunk_ids": [
+        "chunk_c1d63f91ef1dbca967f1",
+        "chunk_a50f5db69f331d239f14",
+        "chunk_3c0b404e2e9255c7de33",
+        "chunk_22e6746630ff78a27ccf",
+        "chunk_36b873bba9df5d9b39e6"
+      ]
+    },
+    "S5": {
+      "registry_url": "https://www.sare.org/publications/managing-cover-crops-profitably/managing-cover-crops-in-conservation-tillage-systems/",
+      "final_url": "https://www.sare.org/publications/managing-cover-crops-profitably/managing-cover-crops-in-conservation-tillage-systems/",
+      "raw_path": "data/raw/S5.html",
+      "raw_sha256": "f3fac6144bc2e1bb464f97dde4d2122059cb87f6374db7e567312ef79b5f25af",
+      "reviewed_card_ids": [
+        "ev_cover_water_risk",
+        "ev_cover_residue_water",
+        "ev_cover_termination",
+        "ev_cover_dryland_limit"
+      ],
+      "reviewed_chunk_ids": [
+        "chunk_5302752633a247b6ab9d",
+        "chunk_5302752633a247b6ab9d",
+        "chunk_09d26c10a085cbb60b67",
+        "chunk_002271ce54c6cb62f682"
+      ]
+    },
+    "S6": {
+      "registry_url": "https://www.frontiersin.org/journals/environmental-science/articles/10.3389/fenvs.2021.643847/full",
+      "final_url": "https://www.frontiersin.org/journals/environmental-science/articles/10.3389/fenvs.2021.643847/full",
+      "raw_path": "data/raw/S6.html",
+      "raw_sha256": "9a731bd18f51a584b8ba0bef652da68258956570521a6e74175c7e81a97d7141",
+      "reviewed_card_ids": [
+        "ev_pesticide_soil_hazard",
+        "ev_pesticide_scope",
+        "ev_pressure_monitoring"
+      ],
+      "reviewed_chunk_ids": [
+        "chunk_91b78932c85a85c57ae6",
+        "chunk_6e5c7bf8e6fad3b07747",
+        "chunk_f0d9780a36106f76c530"
+      ]
+    },
+    "S8": {
+      "registry_url": "https://www.icrisat.org/research/icrisat-development-center/tools-and-technology",
+      "final_url": "https://www.icrisat.org/research/icrisat-development-center/tools-and-technology",
+      "raw_path": "data/raw/S8.html",
+      "raw_sha256": "ef3a0068d0f2df72e8e7699841ccfd5de1c044831f1f45285031ad18810f8c7e",
+      "reviewed_card_ids": [
+        "ev_dryland_water_budget",
+        "ev_soil_health_context",
+        "ev_crop_climate_context"
+      ],
+      "reviewed_chunk_ids": [
+        "chunk_b0b61c9d79d4fad072df",
+        "chunk_44250259192359b46590",
+        "chunk_67942504acf99f76c647"
+      ]
+    },
+    "S9": {
+      "registry_url": "https://files.ipbes.net/ipbes-web-prod-public-files/inline/files/ipbes_global_assessment_report_summary_for_policymakers.pdf",
+      "final_url": "https://files.ipbes.net/ipbes-web-prod-public-files/inline/files/ipbes_global_assessment_report_summary_for_policymakers.pdf",
+      "raw_path": "data/raw/S9.pdf",
+      "raw_sha256": "baa39de770154c471226ea3f60998ada1bd70cd0d6e1f6cff4b70efa643bb9e1",
+      "reviewed_card_ids": [
+        "ev_land_change_driver",
+        "ev_habitat_reconnection",
+        "ev_habitat_monitoring",
+        "ev_natural_habitat_scope"
+      ],
+      "reviewed_chunk_ids": [
+        "chunk_b5eb5a63169ee798bcce",
+        "chunk_e4fd91f4a4acdab290cf",
+        "chunk_84faddee3ef33db3225d",
+        "chunk_48d8e1545f9e23dd65c7",
+        "chunk_7eef06d237715b54fbe5",
+        "chunk_9908ff909595dcfe8f01",
+        "chunk_87ee4b41b77601becda6"
+      ]
+    }
+  }
+}

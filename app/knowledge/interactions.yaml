@@ -1,0 +1,65 @@
+interactions:
+  - edge_id: diversification_biodiversity_context
+    from: intervention.crop_diversification
+    to: metric.biodiversity_composite
+    direction: increase
+    relation_type: synthesis
+    evidence_ids: [ev_diversification_biodiversity]
+    conditions: [cropland diversification is compared with simplified practices]
+    review_status: reviewed
+  - edge_id: growing_cover_crop_uses_water
+    from: intervention.growing_cover_crop
+    to: process.soil_water_use
+    direction: increase
+    relation_type: mechanism
+    evidence_ids: [ev_cover_water_risk]
+    conditions: [cover crop is growing]
+    review_status: reviewed
+  - edge_id: residue_can_conserve_water
+    from: intervention.cover_crop_residue
+    to: process.soil_water_availability
+    direction: increase
+    relation_type: guidance
+    evidence_ids: [ev_cover_residue_water]
+    conditions: [residue remains on soil surface]
+    review_status: reviewed
+  - edge_id: rainfall_distribution_changes_cover_decision
+    from: climate.rainfall_pattern
+    to: decision.cover_crop_requires_water_check
+    direction: constraining
+    relation_type: guidance
+    evidence_ids: [ev_cover_termination]
+    conditions: [rainfall is low, erratic, or seasonally dry]
+    review_status: reviewed
+  - edge_id: pesticide_exposure_soil_invertebrate_hazard
+    from: pressure.pesticide_exposure
+    to: metric.soil_invertebrate_endpoints
+    direction: decrease
+    relation_type: synthesis
+    evidence_ids: [ev_pesticide_soil_hazard]
+    conditions: [exposure and taxon-specific risk are assessed]
+    review_status: reviewed
+  - edge_id: land_change_biodiversity_driver
+    from: pressure.land_conversion
+    to: metric.habitat_integrity
+    direction: decrease
+    relation_type: guidance
+    evidence_ids: [ev_land_change_driver]
+    conditions: [native habitat is present or at risk]
+    review_status: reviewed
+  - edge_id: habitat_reconnection_response
+    from: intervention.habitat_reconnection
+    to: decision.habitat_protection_or_restoration
+    direction: increase
+    relation_type: guidance
+    evidence_ids: [ev_habitat_reconnection]
+    conditions: [local habitat and land-use context are assessed]
+    review_status: reviewed
+  - edge_id: soil_biology_carbon_water_context
+    from: topic.soil_biology
+    to: process.organic_matter_structure_and_water
+    direction: interacting
+    relation_type: mechanism
+    evidence_ids: [ev_soil_biology_context]
+    conditions: [soil organism group and response metric remain distinct]
+    review_status: reviewed

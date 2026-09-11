@@ -1,0 +1,10 @@
+{"id":"E01","kind":"single","message":"Biodiversity is declining on my land","expected_status":"clarify","required_evidence_ids":[]}
+{"id":"E02","kind":"single","site_patch":{"soil":{"organic_carbon_pct":0.3},"climate":{"rainfall_pattern":"low"},"land":{"use_type":"crop","crop_system":"monoculture wheat"},"location":{"region":"semi-arid region"}},"expected_status":"recommend","required_evidence_ids":["ev_diversification_biodiversity","ev_cover_water_risk"]}
+{"id":"E04","kind":"sequence","turns":[{"message":"SOC is 0.3%, low rainfall, monoculture wheat"},{"message":"Annual rainfall is 900 mm concentrated in four months"}],"expected_status":"recommend","required_evidence_ids":["ev_diversification_biodiversity"]}
+{"id":"E05","kind":"hypothetical","turns":[{"message":"SOC is 0.3%, low rainfall, monoculture wheat"},{"message":"What if I could irrigate?","mode":"hypothetical"}],"expected_status":"recommend","required_evidence_ids":[]}
+{"id":"E07","kind":"single","message":"pH is 18","expected_status":"clarify","required_evidence_ids":[]}
+{"id":"E12","kind":"single","message":"Cropland, SOC is 0.3%, low rainfall, reported biodiversity decline, pesticide concern","expected_status":"recommend","required_evidence_ids":["ev_pesticide_soil_hazard"]}
+{"id":"E14","kind":"single","message":"Natural grassland has habitat diversity and recent land clearing","expected_status":"recommend","required_evidence_ids":["ev_land_change_driver"]}
+{"id":"E16","kind":"empty_corpus","message":"SOC is 0.3%, low rainfall, monoculture wheat","expected_status":"insufficient_evidence","required_evidence_ids":[]}
+{"id":"E18","kind":"invented_number","expected_status":"rejected_by_validator","required_evidence_ids":[]}
+{"id":"E20","kind":"isolation","expected_status":"recommend","required_evidence_ids":[]}

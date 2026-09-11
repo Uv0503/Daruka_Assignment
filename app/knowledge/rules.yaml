@@ -1,0 +1,17 @@
+rules:
+  - rule_id: cover_crop_water_check
+    action_id: conditional_cover_cropping
+    when: {land.use_type: crop, climate.rainfall_pattern: [low, erratic, seasonally_dry]}
+    status: conditional
+    required_before_specific_plan: [land.irrigation_available, climate.rainfall_seasonality_detail]
+    retrieve_risk_topics: [growing_cover_crop_water_use, termination_timing]
+  - rule_id: natural_habitat_protection
+    action_id: protect_existing_native_habitat
+    when: {land.use_type: [forest, grassland, wetland]}
+    status: eligible
+    required_before_specific_plan: []
+  - rule_id: pesticide_pressure_first
+    action_id: pesticide_pressure_review
+    when: {pressures.pesticide_use: any}
+    status: eligible
+    required_before_specific_plan: []

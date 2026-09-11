@@ -1,0 +1,63 @@
+actions:
+  - action_id: crop_diversification
+    title: Conditional crop diversification assessment and pilot
+    enabled: true
+    compatible_ecosystems: [crop]
+    required_known_fields: [land.use_type, land.crop_system]
+    evidence_ids: [ev_diversification_biodiversity, ev_diversification_context, ev_dryland_water_budget]
+    activation_evidence_ids: [ev_diversification_biodiversity, ev_diversification_context, ev_dryland_water_budget]
+    benefit_topics: [biodiversity, crop_rotation, soil_fertility]
+    risk_topics: [context_dependency, water_budget]
+    monitoring: [plant_pollinator_transects, habitat_extent]
+  - action_id: conditional_cover_cropping
+    title: Conditional cover-crop feasibility check
+    enabled: true
+    compatible_ecosystems: [crop]
+    required_known_fields: [land.use_type]
+    evidence_ids: [ev_cover_water_risk, ev_cover_residue_water, ev_cover_termination, ev_cover_dryland_limit]
+    activation_evidence_ids: [ev_cover_water_risk, ev_cover_residue_water, ev_cover_termination, ev_cover_dryland_limit]
+    benefit_topics: [soil_structure, infiltration]
+    risk_topics: [growing_water_use, termination_timing]
+    monitoring: [soil_moisture, cash_crop_establishment]
+  - action_id: locally_appropriate_habitat_strips
+    title: Locally appropriate habitat-strip assessment
+    enabled: true
+    compatible_ecosystems: [crop, pasture]
+    required_known_fields: [land.use_type, biodiversity.habitat_types]
+    evidence_ids: [ev_habitat_reconnection, ev_land_change_driver, ev_natural_habitat_scope]
+    activation_evidence_ids: [ev_habitat_reconnection, ev_land_change_driver, ev_natural_habitat_scope]
+    benefit_topics: [habitat_diversity, connectivity]
+    risk_topics: [local_design_scope]
+    monitoring: [habitat_extent, plant_pollinator_transects]
+  - action_id: pesticide_pressure_review
+    title: Pesticide exposure and IPM assessment
+    enabled: true
+    compatible_ecosystems: [crop, pasture]
+    required_known_fields: [land.use_type]
+    evidence_ids: [ev_pesticide_soil_hazard, ev_pesticide_scope, ev_pressure_monitoring]
+    activation_evidence_ids: [ev_pesticide_soil_hazard, ev_pesticide_scope, ev_pressure_monitoring]
+    benefit_topics: [soil_invertebrates, pressure_reduction]
+    risk_topics: [exposure_unknown, no_causation_claim]
+    monitoring: [pesticide_inventory, soil_invertebrate_survey]
+  - action_id: protect_existing_native_habitat
+    title: Protect existing native habitat before conversion
+    enabled: true
+    compatible_ecosystems: [forest, grassland, wetland, pasture, other]
+    required_known_fields: [land.use_type]
+    evidence_ids: [ev_land_change_driver, ev_habitat_reconnection, ev_natural_habitat_scope]
+    activation_evidence_ids: [ev_land_change_driver, ev_habitat_reconnection, ev_natural_habitat_scope]
+    benefit_topics: [habitat_protection, pressure_reduction]
+    risk_topics: [no_agricultural_conversion]
+    monitoring: [habitat_extent, habitat_types]
+  - action_id: agroforestry_assessment
+    title: Agroforestry assessment
+    enabled: false
+    compatible_ecosystems: [crop]
+    required_known_fields: []
+    evidence_ids: []
+  - action_id: residue_management_planning
+    title: Residue management planning
+    enabled: false
+    compatible_ecosystems: [crop]
+    required_known_fields: []
+    evidence_ids: []

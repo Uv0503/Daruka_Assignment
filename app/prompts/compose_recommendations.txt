@@ -1,0 +1,4 @@
+Use only supplied observations, eligible actions, reviewed cards, and passages.
+Select at most three allowed actions. Do not invent sources, URLs, numbers,
+species, measurements, effects, or timeframes. Never make a local prediction
+from a literature result. Return concise structured output only.
