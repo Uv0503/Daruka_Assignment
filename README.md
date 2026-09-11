@@ -1,5 +1,6 @@
 # Biodiversity Intelligence
 
+🚀 **Live Deployment:** [Daruka Assignment on Streamlit](https://darukaassignment-xogej2zbsrk9stxh45ubrw.streamlit.app/)
 Local, single-user biodiversity decision support built with FastAPI, Streamlit,
 SQLite, Chroma, BM25, and `all-MiniLM-L6-v2`. Groq Chat Completions is used only
 for strict-schema action selection; the server renders scientific wording,
