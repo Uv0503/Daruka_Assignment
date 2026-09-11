@@ -1,0 +1,80 @@
+{
+  "kb_version": "biodiversity-v1",
+  "sources": [
+    {
+      "source_id": "S1",
+      "url": "https://www.fao.org/soils-portal/soil-biodiversity/en/",
+      "content_sha256": "4aaa4064f5b42dc3408cb6f1a2d950899e4a9508b9e0be418ba9a87ce74c91de",
+      "local_path": "data/raw/S1.html",
+      "retrieved_at": "2026-09-11T11:18:22.008475+00:00",
+      "manifest_sha256": "a3099b499b4ba959ecea66eeda40e7403d90c274cdc5b33923e523b3d5c8cdf3"
+    },
+    {
+      "source_id": "S2",
+      "url": "https://www.fao.org/soils-portal/soil-biodiversity/soil-conservation-and-agriculture/en/",
+      "content_sha256": "0cd86a9cdf6eb429792146a94fead07bc700b9a3b712a479ea0cee8567a70a01",
+      "local_path": "data/raw/S2.html",
+      "retrieved_at": "2026-09-11T10:51:39.461006+00:00",
+      "manifest_sha256": "172360246a1f5b5a7345dbc1f6e4e3fb4e9cfaddfa9808bf08ba82e555bc98d3"
+    },
+    {
+      "source_id": "S3",
+      "url": "https://www.fao.org/4/a0100e/a0100e.pdf",
+      "content_sha256": "7264fa4eb56cb886c686769fb081951f36dcc45d7f3516cbd9dcad9809c2ec4c",
+      "local_path": "data/raw/S3.pdf",
+      "retrieved_at": "2026-09-11T10:51:41.045008+00:00",
+      "manifest_sha256": "cfe6982f77ce73d32fdd4fe52f468868eb086f50a9b83b2ab38c3ea6c624426a"
+    },
+    {
+      "source_id": "S4",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7673676/",
+      "content_sha256": "42b4e201419b1720498fcc624663a38752be72ce3662a778521751b0a51cf84e",
+      "local_path": "data/raw/S4.html",
+      "retrieved_at": "2026-09-11T10:51:41.791429+00:00",
+      "manifest_sha256": "dacabb9d4e6dac39259e15140420b599454acbc57a52bebe62b48b9ea303207b"
+    },
+    {
+      "source_id": "S5",
+      "url": "https://www.sare.org/publications/managing-cover-crops-profitably/managing-cover-crops-in-conservation-tillage-systems/",
+      "content_sha256": "f3fac6144bc2e1bb464f97dde4d2122059cb87f6374db7e567312ef79b5f25af",
+      "local_path": "data/raw/S5.html",
+      "retrieved_at": "2026-09-11T11:18:23.542606+00:00",
+      "manifest_sha256": "f647e69b093ce8dd9756bb63c8f1174ebecb7a298b4a16446a1fd13e58e7910a"
+    },
+    {
+      "source_id": "S6",
+      "url": "https://www.frontiersin.org/journals/environmental-science/articles/10.3389/fenvs.2021.643847/full",
+      "content_sha256": "9a731bd18f51a584b8ba0bef652da68258956570521a6e74175c7e81a97d7141",
+      "local_path": "data/raw/S6.html",
+      "retrieved_at": "2026-09-11T10:39:47.982106+00:00",
+      "manifest_sha256": "440436b8abca228b3a14a7d2ad887e67e670380f1f051aa306c196768cf7c78d"
+    },
+    {
+      "source_id": "S8",
+      "url": "https://www.icrisat.org/research/icrisat-development-center/tools-and-technology",
+      "content_sha256": "ef3a0068d0f2df72e8e7699841ccfd5de1c044831f1f45285031ad18810f8c7e",
+      "local_path": "data/raw/S8.html",
+      "retrieved_at": "2026-09-11T10:39:48.280819+00:00",
+      "manifest_sha256": "3184678381c90b23164ad74065a498d249dccc60638d5cc1c18edc1bb04d7b2a"
+    },
+    {
+      "source_id": "S9",
+      "url": "https://files.ipbes.net/ipbes-web-prod-public-files/inline/files/ipbes_global_assessment_report_summary_for_policymakers.pdf",
+      "content_sha256": "baa39de770154c471226ea3f60998ada1bd70cd0d6e1f6cff4b70efa643bb9e1",
+      "local_path": "data/raw/S9.pdf",
+      "retrieved_at": "2026-09-11T10:39:50.057934+00:00",
+      "manifest_sha256": "4301f218b93d4cc507944bcc17944fa76b8cb45df0fff2498a661e4f16c6ffdb"
+    }
+  ],
+  "cards": 20,
+  "chunks": 54,
+  "parents": 19,
+  "cards_sha256": "9c27d07aa0309b77c13896ffb48560f8defd2d2bb86d15658d14bc13e5277dfd",
+  "passages_sha256": "6ab34e8ce78d6671f0d0ef42991c3777fc12ba7479616381eb57dc354c188c53",
+  "parents_sha256": "b460dc47df521a8f688ae906f1627a21dcc7c37188dc7eb136ab07061bc54547",
+  "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+  "embedding_dimension": 384,
+  "preprocessing_version": "minilm_wordpiece_175_overlap_25_v1",
+  "collection_name": "biodiversity_chunks",
+  "created_at": "2026-09-11T11:40:47.048008+00:00"
+}

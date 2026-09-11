@@ -1,0 +1,102 @@
+[
+  {
+    "source_id": "S1",
+    "requested_url": "https://www.fao.org/soils-portal/soil-biodiversity/en/",
+    "final_url": "https://www.fao.org/soils-portal/soil-biodiversity/en/",
+    "status_code": 200,
+    "content_type": "text/html; charset=utf-8",
+    "content_length": 35817,
+    "transport_retries": 2,
+    "user_agent_profile": "transparent_browser_compatible_v1",
+    "retrieved_at": "2026-09-11T11:18:22.008475+00:00",
+    "content_sha256": "4aaa4064f5b42dc3408cb6f1a2d950899e4a9508b9e0be418ba9a87ce74c91de",
+    "local_path": "data/raw/S1.html",
+    "error": null
+  },
+  {
+    "source_id": "S2",
+    "requested_url": "https://www.fao.org/soils-portal/soil-biodiversity/soil-conservation-and-agriculture/en/",
+    "final_url": "https://www.fao.org/soils-portal/soil-biodiversity/soil-conservation-and-agriculture/en/",
+    "status_code": 200,
+    "content_type": "text/html; charset=utf-8",
+    "content_length": 28521,
+    "retrieved_at": "2026-09-11T10:51:39.461006+00:00",
+    "content_sha256": "0cd86a9cdf6eb429792146a94fead07bc700b9a3b712a479ea0cee8567a70a01",
+    "local_path": "data/raw/S2.html",
+    "error": null
+  },
+  {
+    "source_id": "S3",
+    "requested_url": "https://www.fao.org/4/a0100e/a0100e.pdf",
+    "final_url": "https://www.fao.org/4/a0100e/a0100e.pdf",
+    "status_code": 200,
+    "content_type": "application/pdf",
+    "content_length": 2468845,
+    "retrieved_at": "2026-09-11T10:51:41.045008+00:00",
+    "content_sha256": "7264fa4eb56cb886c686769fb081951f36dcc45d7f3516cbd9dcad9809c2ec4c",
+    "local_path": "data/raw/S3.pdf",
+    "error": null
+  },
+  {
+    "source_id": "S4",
+    "requested_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7673676/",
+    "final_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7673676/",
+    "status_code": 200,
+    "content_type": "text/html; charset=utf-8",
+    "content_length": 191096,
+    "retrieved_at": "2026-09-11T10:51:41.791429+00:00",
+    "content_sha256": "42b4e201419b1720498fcc624663a38752be72ce3662a778521751b0a51cf84e",
+    "local_path": "data/raw/S4.html",
+    "error": null
+  },
+  {
+    "source_id": "S5",
+    "requested_url": "https://www.sare.org/publications/managing-cover-crops-profitably/managing-cover-crops-in-conservation-tillage-systems/",
+    "final_url": "https://www.sare.org/publications/managing-cover-crops-profitably/managing-cover-crops-in-conservation-tillage-systems/",
+    "status_code": 200,
+    "content_type": "text/html; charset=utf-8",
+    "content_length": 202667,
+    "transport_retries": 2,
+    "user_agent_profile": "transparent_browser_compatible_v1",
+    "retrieved_at": "2026-09-11T11:18:23.542606+00:00",
+    "content_sha256": "f3fac6144bc2e1bb464f97dde4d2122059cb87f6374db7e567312ef79b5f25af",
+    "local_path": "data/raw/S5.html",
+    "error": null
+  },
+  {
+    "source_id": "S6",
+    "requested_url": "https://www.frontiersin.org/journals/environmental-science/articles/10.3389/fenvs.2021.643847/full",
+    "final_url": "https://www.frontiersin.org/journals/environmental-science/articles/10.3389/fenvs.2021.643847/full",
+    "status_code": 200,
+    "content_type": "text/html;charset=utf-8",
+    "content_length": 1820873,
+    "retrieved_at": "2026-09-11T10:39:47.982106+00:00",
+    "content_sha256": "9a731bd18f51a584b8ba0bef652da68258956570521a6e74175c7e81a97d7141",
+    "local_path": "data/raw/S6.html",
+    "error": null
+  },
+  {
+    "source_id": "S8",
+    "requested_url": "https://www.icrisat.org/research/icrisat-development-center/tools-and-technology",
+    "final_url": "https://www.icrisat.org/research/icrisat-development-center/tools-and-technology",
+    "status_code": 200,
+    "content_type": "text/html; charset=utf-8",
+    "content_length": 111362,
+    "retrieved_at": "2026-09-11T10:39:48.280819+00:00",
+    "content_sha256": "ef3a0068d0f2df72e8e7699841ccfd5de1c044831f1f45285031ad18810f8c7e",
+    "local_path": "data/raw/S8.html",
+    "error": null
+  },
+  {
+    "source_id": "S9",
+    "requested_url": "https://files.ipbes.net/ipbes-web-prod-public-files/inline/files/ipbes_global_assessment_report_summary_for_policymakers.pdf",
+    "final_url": "https://files.ipbes.net/ipbes-web-prod-public-files/inline/files/ipbes_global_assessment_report_summary_for_policymakers.pdf",
+    "status_code": 200,
+    "content_type": "application/pdf",
+    "content_length": 14719952,
+    "retrieved_at": "2026-09-11T10:39:50.057934+00:00",
+    "content_sha256": "baa39de770154c471226ea3f60998ada1bd70cd0d6e1f6cff4b70efa643bb9e1",
+    "local_path": "data/raw/S9.pdf",
+    "error": null
+  }
+]

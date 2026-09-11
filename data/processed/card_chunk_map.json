@@ -1,0 +1,67 @@
+{
+  "ev_diversification_biodiversity": [
+    "chunk_c1d63f91ef1dbca967f1",
+    "chunk_a50f5db69f331d239f14"
+  ],
+  "ev_diversification_context": [
+    "chunk_3c0b404e2e9255c7de33"
+  ],
+  "ev_diversification_scope": [
+    "chunk_22e6746630ff78a27ccf",
+    "chunk_36b873bba9df5d9b39e6"
+  ],
+  "ev_cover_water_risk": [
+    "chunk_5302752633a247b6ab9d"
+  ],
+  "ev_cover_residue_water": [
+    "chunk_5302752633a247b6ab9d"
+  ],
+  "ev_cover_termination": [
+    "chunk_09d26c10a085cbb60b67"
+  ],
+  "ev_cover_dryland_limit": [
+    "chunk_002271ce54c6cb62f682"
+  ],
+  "ev_pesticide_soil_hazard": [
+    "chunk_91b78932c85a85c57ae6"
+  ],
+  "ev_pesticide_scope": [
+    "chunk_6e5c7bf8e6fad3b07747"
+  ],
+  "ev_pressure_monitoring": [
+    "chunk_f0d9780a36106f76c530"
+  ],
+  "ev_dryland_water_budget": [
+    "chunk_b0b61c9d79d4fad072df"
+  ],
+  "ev_soil_health_context": [
+    "chunk_44250259192359b46590"
+  ],
+  "ev_crop_climate_context": [
+    "chunk_67942504acf99f76c647"
+  ],
+  "ev_land_change_driver": [
+    "chunk_b5eb5a63169ee798bcce",
+    "chunk_e4fd91f4a4acdab290cf"
+  ],
+  "ev_habitat_reconnection": [
+    "chunk_84faddee3ef33db3225d",
+    "chunk_48d8e1545f9e23dd65c7"
+  ],
+  "ev_habitat_monitoring": [
+    "chunk_7eef06d237715b54fbe5"
+  ],
+  "ev_natural_habitat_scope": [
+    "chunk_9908ff909595dcfe8f01",
+    "chunk_87ee4b41b77601becda6"
+  ],
+  "ev_management_context": [
+    "chunk_f628b2866d422ebeb9de"
+  ],
+  "ev_soil_moisture_interaction": [
+    "chunk_97c5d837fec1ac9e29f6"
+  ],
+  "ev_soil_biology_context": [
+    "chunk_62f97f8c5ec3595e83dc"
+  ]
+}

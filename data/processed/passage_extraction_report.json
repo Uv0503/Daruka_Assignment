@@ -1,0 +1,12 @@
+{
+  "parents": 19,
+  "chunks": 54,
+  "mapped_cards": 20,
+  "failures": [],
+  "chunking": {
+    "tokenizer": "sentence-transformers/all-MiniLM-L6-v2",
+    "target_word_pieces": 175,
+    "overlap_word_pieces": 25,
+    "max_model_tokens": 256
+  }
+}
