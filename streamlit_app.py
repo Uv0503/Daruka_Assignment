@@ -8,6 +8,14 @@ import streamlit as st
 # Set the API base URL so the Streamlit UI knows where to talk to the local FastAPI backend
 os.environ["API_BASE_URL"] = "http://127.0.0.1:8080"
 
+# Forward Streamlit Cloud secrets into os.environ so the backend subprocess inherits them
+try:
+    for key, value in getattr(st, "secrets", {}).items():
+        if isinstance(value, str):
+            os.environ.setdefault(key, value)
+except Exception:
+    pass
+
 def is_backend_running():
     """Check if the FastAPI backend is responding."""
     try:
@@ -27,7 +35,8 @@ def start_backend():
             [sys.executable, "-m", "uvicorn", "app.main:app", "--host", "127.0.0.1", "--port", "8080"],
             stdout=subprocess.PIPE,
             stderr=subprocess.STDOUT,
-            text=True
+            text=True,
+            env=os.environ
         )
         
         # Wait up to 60 seconds for it to become ready (in case it needs to download ML models first)

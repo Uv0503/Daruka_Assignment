@@ -29,5 +29,14 @@ class Settings(BaseSettings):
         return self.groq_api_key is not None and bool(self.groq_api_key.get_secret_value())
 
 
+import os
+
 def get_settings() -> Settings:
+    if not os.getenv("GROQ_API_KEY"):
+        try:
+            import streamlit as st
+            if hasattr(st, "secrets") and "GROQ_API_KEY" in st.secrets:
+                os.environ["GROQ_API_KEY"] = str(st.secrets["GROQ_API_KEY"])
+        except Exception:
+            pass
     return Settings()
