@@ -4,7 +4,7 @@ __pycache__/
 *.py[cod]
 .pytest_cache/
 .ruff_cache/
-data/raw/
+# data/raw/
 # data/processed/
 # data/chroma/
 # data/app.sqlite3
