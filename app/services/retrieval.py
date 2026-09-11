@@ -58,7 +58,10 @@ class Retriever:
         ]
         self.chunks = [self.passages_by_id[chunk_id] for chunk_id in active_chunk_ids]
         self.chunk_to_card_ids = {chunk_id: [card["evidence_id"] for card in self.cards if chunk_id in card["chunk_ids"]] for chunk_id in active_chunk_ids}
-        self.bm25 = BM25Okapi([tokens(chunk["text"]) for chunk in self.chunks])
+        if self.chunks:
+            self.bm25 = BM25Okapi([tokens(chunk["text"]) for chunk in self.chunks])
+        else:
+            self.bm25 = None
         self._encoder = None
         self._embeddings = None
         self._chroma = None
