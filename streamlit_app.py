@@ -23,26 +23,40 @@ def start_backend():
     if not is_backend_running():
         print("Starting FastAPI backend...")
         # Start the FastAPI server in the background
-        subprocess.Popen(
+        process = subprocess.Popen(
             [sys.executable, "-m", "uvicorn", "app.main:app", "--host", "127.0.0.1", "--port", "8000"],
-            stdout=subprocess.DEVNULL,
-            stderr=subprocess.DEVNULL
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            text=True
         )
-        # Wait up to 10 seconds for it to become ready
-        for _ in range(20):
+        
+        # Wait up to 60 seconds for it to become ready (in case it needs to download ML models first)
+        for _ in range(120):
             if is_backend_running():
                 print("FastAPI backend is ready!")
-                return True
+                return True, ""
             time.sleep(0.5)
+            
         print("Backend failed to start in time.")
-        return False
-    return True
+        
+        # If it failed, let's grab the logs to see why
+        process.terminate()
+        try:
+            outs, _ = process.communicate(timeout=2)
+            return False, outs
+        except subprocess.TimeoutExpired:
+            process.kill()
+            return False, "Timeout waiting for backend logs."
+            
+    return True, ""
 
 # Ensure the backend is started
-backend_ready = start_backend()
+backend_ready, backend_logs = start_backend()
 
 if not backend_ready:
     st.error("Failed to start the local FastAPI backend.")
+    st.error("Backend Error Logs:")
+    st.code(backend_logs)
     st.stop()
 
 # Add the current directory to sys.path so 'ui.components' can be imported correctly
