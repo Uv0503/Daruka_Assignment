@@ -5,16 +5,49 @@ import time
 import urllib.request
 import streamlit as st
 
+from pathlib import Path
+
 # Set the API base URL so the Streamlit UI knows where to talk to the local FastAPI backend
 os.environ["API_BASE_URL"] = "http://127.0.0.1:8080"
 
 # Forward Streamlit Cloud secrets into os.environ so the backend subprocess inherits them
+def extract_secrets(mapping):
+    try:
+        for k, v in mapping.items():
+            if isinstance(v, str):
+                os.environ[k] = v
+                os.environ[k.upper()] = v
+            elif hasattr(v, "items"):
+                extract_secrets(v)
+    except Exception:
+        pass
+
+# 1. Try reading from st.secrets
 try:
-    for key, value in getattr(st, "secrets", {}).items():
-        if isinstance(value, str):
-            os.environ.setdefault(key, value)
+    if hasattr(st, "secrets"):
+        extract_secrets(st.secrets)
 except Exception:
     pass
+
+# 2. Try reading from .streamlit/secrets.toml
+for p in [Path(".streamlit/secrets.toml"), Path.home() / ".streamlit/secrets.toml"]:
+    if p.exists():
+        try:
+            import tomllib
+            with open(p, "rb") as f:
+                extract_secrets(tomllib.load(f))
+        except Exception:
+            pass
+
+# 3. If .env does not exist on the cloud container but GROQ_API_KEY is found, write it out
+if "GROQ_API_KEY" in os.environ and not Path(".env").exists():
+    try:
+        with open(".env", "w") as f:
+            for k in ["GROQ_API_KEY", "LLM_MODEL", "LLM_BASE_URL", "LLM_TIMEOUT_SECONDS", "API_BASE_URL", "APP_MODE", "LOG_LEVEL"]:
+                if k in os.environ:
+                    f.write(f"{k}={os.environ[k]}\n")
+    except Exception:
+        pass
 
 def is_backend_running():
     """Check if the FastAPI backend is responding."""

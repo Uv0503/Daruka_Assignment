@@ -42,9 +42,13 @@ with st.sidebar:
     submit_json = st.button("Submit structured profile", disabled=not st.session_state.session_id)
     try:
         health = httpx.get(f"{API}/health", timeout=5).json()
-        st.caption(f"Corpus: {'ready' if health.get('corpus_ready') else 'unavailable'}; provider configured: {health.get('provider_configured')}")
-    except Exception:  # noqa: BLE001 - local health request boundary
-        st.error("API unavailable. Start the backend first.")
+        if health.get("provider_configured"):
+            st.success("🟢 AI Scientist Reasoning: Active", icon="🌿")
+        else:
+            st.warning("⚠️ LLM Offline: Add GROQ_API_KEY in Streamlit Cloud Secrets", icon="⚠️")
+        st.caption(f"Corpus: {'ready' if health.get('corpus_ready') else 'unavailable'} | Model: {health.get('model', 'none')}")
+    except Exception:  # noqa: BLE001
+        st.caption("Backend: Starting up...")
 
 for turn in st.session_state.turns:
     with st.chat_message("user"): st.write(turn["message"])
