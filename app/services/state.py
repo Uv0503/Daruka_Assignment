@@ -60,7 +60,7 @@ def flatten_patch(patch: SitePatch) -> dict[str, object]:
     return result
 
 
-def extract_text_patch(message: str, current: dict | None = None) -> tuple[dict[str, object], bool]:
+def extract_text_patch(message: str, current: dict | None = None) -> tuple[dict[str, object], bool, str | None]:
     """Bounded deterministic fallback for explicit, canonical observations."""
     text = message.lower()
     short_answer = re.sub(r"[^a-z\s'-]", "", text).strip()
@@ -115,8 +115,13 @@ def extract_text_patch(message: str, current: dict | None = None) -> tuple[dict[
     prior_question = next(iter((current or {}).get("last_question_fields", [])), None)
     if unknown_reply and prior_question and prior_question not in answered_fields:
         values[prior_question] = None
-    elif prior_question == "land.use_type" and short_answer in {"crop", "cropland", "pasture", "forest", "grassland", "wetland", "urban", "other"}:
-        values[prior_question] = "crop" if short_answer == "cropland" else short_answer
+    elif prior_question == "land.use_type" and short_answer in {"crop", "cropland", "pasture", "forest", "grassland", "wetland", "urban", "other",
+                                                                          "another land type", "other land type", "barren", "degraded", "shrubland",
+                                                                          "savanna", "orchard", "garden", "agroforestry", "mixed", "another"}:
+        values[prior_question] = "crop" if short_answer in {"crop", "cropland"} else (
+            "other" if short_answer in {"other", "another land type", "other land type", "another", "barren", "degraded",
+                                         "shrubland", "savanna", "orchard", "garden", "agroforestry", "mixed"} else short_answer
+        )
     elif prior_question == "land.irrigation_available" and short_answer in {"yes", "available", "irrigation available"}:
         values[prior_question] = True
     elif prior_question == "land.irrigation_available" and short_answer in {"no", "none", "no irrigation", "not available"}:
@@ -187,10 +192,10 @@ def extract_text_patch(message: str, current: dict | None = None) -> tuple[dict[
     if "irrigat" in text:
         if re.search(r"\b(no|without|not)\s+irrigat|\birrigation\s+(?:is\s+)?not\s+available", text): values["land.irrigation_available"] = False
         elif "available" in text or "could" in text: values["land.irrigation_available"] = True
-    return canonicalize_values(values), hypothetical
+    return canonicalize_values(values), hypothetical, None
 
 
-def validate_text_extraction(extraction: TextExtraction, message: str) -> tuple[dict[str, object], bool, list[str]]:
+def validate_text_extraction(extraction: TextExtraction, message: str) -> tuple[dict[str, object], bool, list[str], str | None]:
     """Turn span-supported model candidates into the same patch used by JSON.
 
     A model result is advisory. Values outside the canonical patch contract,
@@ -220,8 +225,8 @@ def validate_text_extraction(extraction: TextExtraction, message: str) -> tuple[
         patch = SitePatch.model_validate(nested)
     except ValueError as exc:
         warnings.append(f"Dropped invalid structured extraction: {exc.errors()[0]['msg']}")
-        return {}, extraction.hypothetical or extraction.intent == "hypothetical", warnings
-    return canonicalize_values(flatten_patch(patch)), extraction.hypothetical or extraction.intent == "hypothetical", warnings
+        return {}, extraction.hypothetical or extraction.intent == "hypothetical", warnings, extraction.active_goal
+    return canonicalize_values(flatten_patch(patch)), extraction.hypothetical or extraction.intent == "hypothetical", warnings, extraction.active_goal
 
 
 class StateService:
@@ -244,6 +249,11 @@ class StateService:
             events.append(event)
         if hypothetical:
             state["hypothetical"] = {"current": target["current"], "description": raw_text}
+        
+        # Persist active_goal logic: only update if explicitly provided, else keep existing
+        if "active_goal" in values:
+            target["active_goal"] = values["active_goal"]
+        
         return target, events
 
     @staticmethod

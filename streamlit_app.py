@@ -6,12 +6,12 @@ import urllib.request
 import streamlit as st
 
 # Set the API base URL so the Streamlit UI knows where to talk to the local FastAPI backend
-os.environ["API_BASE_URL"] = "http://127.0.0.1:8000"
+os.environ["API_BASE_URL"] = "http://127.0.0.1:8080"
 
 def is_backend_running():
     """Check if the FastAPI backend is responding."""
     try:
-        urllib.request.urlopen("http://127.0.0.1:8000/health", timeout=1)
+        urllib.request.urlopen("http://127.0.0.1:8080/health", timeout=1)
         return True
     except Exception:
         return False
@@ -24,7 +24,7 @@ def start_backend():
         print("Starting FastAPI backend...")
         # Start the FastAPI server in the background
         process = subprocess.Popen(
-            [sys.executable, "-m", "uvicorn", "app.main:app", "--host", "127.0.0.1", "--port", "8000"],
+            [sys.executable, "-m", "uvicorn", "app.main:app", "--host", "127.0.0.1", "--port", "8080"],
             stdout=subprocess.PIPE,
             stderr=subprocess.STDOUT,
             text=True

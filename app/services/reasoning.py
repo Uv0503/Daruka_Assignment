@@ -59,6 +59,16 @@ class Reasoner:
             score = 2 if not conditional else 1
             if action["action_id"] == "pesticide_pressure_review": score += 2
             if action["action_id"] == "protect_existing_native_habitat": score += 2
+            
+            # Multi-metric compounding logic
+            if action["action_id"] == "crop_diversification":
+                if "monoculture" in str(current.get("land.crop_system", "")).lower(): score += 1
+                if isinstance(current.get("soil.organic_carbon_pct"), (int, float)) and current.get("soil.organic_carbon_pct") < 1.0: score += 1
+                if current.get("biodiversity.decline_reported"): score += 1
+            if action["action_id"] == "conditional_cover_cropping":
+                if current.get("soil.moisture_condition") == "low" or current.get("soil.moisture_vwc_pct", 100) < 15: score += 1
+                if isinstance(current.get("soil.organic_carbon_pct"), (int, float)) and current.get("soil.organic_carbon_pct") < 1.0: score += 1
+
             ranked.append({"action": action, "conditional": conditional, "score": score, "retrieved_evidence_ids": [eid for eid in action["evidence_ids"] if eid in evidence_ids]})
         return sorted(ranked, key=lambda item: (-item["score"], item["action"]["action_id"])), rejected
 

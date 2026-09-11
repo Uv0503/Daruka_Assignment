@@ -5,6 +5,18 @@ import re
 
 UNKNOWN_VALUES = {"unknown", "not known", "unsure", "declined"}
 
+# Land type values that count as answered (including broad/other answers)
+ANSWERED_LAND_VALUES = {"crop", "cropland", "pasture", "forest", "grassland", "wetland", "urban", "other", "another land type", "other land type", "mixed", "agroforestry", "orchard", "garden", "barren", "degraded", "shrubland", "savanna"}
+
+# Phrases that indicate a general knowledge/definition question rather than site advice
+DEFINITION_PATTERNS = re.compile(
+    r"^\s*what\s+(?:is|are|does|do)\s+|^\s*define\s+|^\s*explain\s+|^\s*tell\s+me\s+about\s+"
+    r"|^\s*what\s+(?:does\s+)?(?:biodiversity|land|soil|soc|organic\s+carbon|rainfall|habitat|ecosystem)\b"
+    r"|\bhow\s+(?:do|does|can)\s+(?:i|you|we)\s+(?:measure|tell|know|check)\s+if\b"
+    r"|\bwhat\s+(?:indicators?|signs?|metrics?)\b",
+    re.IGNORECASE,
+)
+
 
 def active_values(state: dict) -> dict[str, object]:
     return {field: event["value"] for field, event in state.get("current", {}).items() if event is not None}
@@ -12,7 +24,27 @@ def active_values(state: dict) -> dict[str, object]:
 
 def was_answered(state: dict, field: str) -> bool:
     """True for known values, zero, explicit null, and explicit unknown."""
-    return field in state.get("current", {}) or field in state.get("declined_questions", [])
+    if field in state.get("declined_questions", []):
+        return True
+    event = state.get("current", {}).get(field)
+    if event is not None:
+        return True
+    # For land.use_type, also check if any land-type synonym was recorded
+    if field == "land.use_type":
+        # Check if we already asked this in a previous turn (tracked in last_question_fields history)
+        asked_history = state.get("asked_question_fields", [])
+        return field in asked_history
+    return False
+
+
+def _was_just_asked(state: dict, field: str) -> bool:
+    """True if this exact question was asked in ANY recent turn."""
+    return field in state.get("last_question_fields", []) or field in state.get("asked_question_fields", [])
+
+
+def is_definition_question(message: str) -> bool:
+    """True for short definitional/knowledge questions that should get direct answers."""
+    return bool(DEFINITION_PATTERNS.search(message)) and len(message.split()) < 15
 
 
 def usable_value(values: dict[str, object], field: str) -> bool:
@@ -74,8 +106,14 @@ class ClarificationService:
         if state.get("unresolved_conflicts"):
             field = state["unresolved_conflicts"][0]
             return [{"field": field, "question": "Which of the conflicting values should be used?", "why_it_matters": "The conflicting observation is held separately and cannot change the active profile until you resolve it.", "answer_options": None, "blocking": True}]
-        if not usable_value(values, "land.use_type") and not was_answered(state, "land.use_type"):
-            return [{"field": "land.use_type", "question": "Is this cropland, pasture, forest, grassland, wetland, or another land type?", "why_it_matters": self._reason(None, "land.use_type", retrieved), "answer_options": ["crop", "pasture", "forest", "grassland", "wetland", "other"], "blocking": True}]
+        # Check raw message for any land-type mention that might not have been parsed yet
+        raw_msg = message.casefold().strip()
+        msg_mentions_land = any(v in raw_msg for v in ANSWERED_LAND_VALUES) or re.search(r"\b(barren|farm|field|plot|land)\b", raw_msg)
+        land_already_asked = _was_just_asked(state, "land.use_type")
+        if not usable_value(values, "land.use_type") and not was_answered(state, "land.use_type") and not (land_already_asked and msg_mentions_land):
+            # Only ask the land type question if we haven't just asked it
+            if not land_already_asked:
+                return [{"field": "land.use_type", "question": "Is this cropland, pasture, forest, grassland, wetland, or another land type?", "why_it_matters": self._reason(None, "land.use_type", retrieved), "answer_options": ["crop", "pasture", "forest", "grassland", "wetland", "other"], "blocking": True}]
 
         action_id = action_id or self.prospective_action(state, message)
         land = values.get("land.use_type")

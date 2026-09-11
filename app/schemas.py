@@ -234,11 +234,22 @@ class ChatResponse(StrictModel):
 
 class CompositionChoice(StrictModel):
     selected_action_ids: list[str] = Field(max_length=3)
-    response_mode: Literal["conditional_evidence_assessment"]
+    reasoning: str = Field(description="Integrated multi-metric reasoning paragraph explaining why these actions are prioritized based on all supplied context.", max_length=1500)
+    response_mode: Literal["multi_metric_recommendation", "conditional_evidence_assessment"]
 
 
 class EvidenceChoice(StrictModel):
     selected_evidence_ids: list[str] = Field(max_length=6)
+    focus: Literal["evidence", "comparison", "monitoring", "local_prediction", "site_advice"]
+
+
+class EvidenceSynthesis(StrictModel):
+    direct_answer: str = Field(description="Direct, practical answer to what the user asked, using general environmental/agronomic knowledge.")
+    reasoning: str = Field(description="Scientific explanation of the key factors, causes, or relationships.")
+    scientific_grounding: str = Field(default="", description="How the retrieved evidence supports or constrains this answer. Leave empty or brief if no retrieved evidence is directly relevant.")
+    condition_or_uncertainty: str = Field(default="", description="One concise sentence noting an important condition or uncertainty if materially relevant.")
+    follow_up_question: str | None = Field(default=None, description="At most ONE useful diagnostic or clarifying question if missing context changes the answer significantly.")
+    selected_evidence_ids: list[str] = Field(default_factory=list, max_length=6, description="Evidence IDs directly relevant to the question. Select none if retrieved chunks are irrelevant or off-topic.")
     focus: Literal["evidence", "comparison", "monitoring", "local_prediction", "site_advice"]
 
 
@@ -278,6 +289,7 @@ class ExtractedObservation(StrictModel):
 
 
 class TextExtraction(StrictModel):
-    intent: Literal["new_information", "question", "correction", "hypothetical", "reset", "out_of_scope"]
+    intent: Literal["new_information", "question", "knowledge", "investigation", "correction", "hypothetical", "reset", "out_of_scope"]
+    active_goal: str | None = Field(default=None, description="The original question or goal the user is trying to solve (e.g. 'Which crop should I grow in alluvial soil?'). Essential for memory across turns.")
     observations: list[ExtractedObservation] = Field(max_length=12)
     hypothetical: bool

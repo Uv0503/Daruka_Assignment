@@ -20,7 +20,7 @@ class LLMClient:
             api_key=settings.groq_api_key.get_secret_value() if settings.groq_api_key else None,
             base_url=str(settings.llm_base_url),
             timeout=settings.llm_timeout_seconds,
-            max_retries=0,
+            max_retries=3,
         )
 
     def structured(self, *, system: str, user: str, schema: type[T]) -> T:
@@ -28,6 +28,20 @@ class LLMClient:
         if not self.settings.provider_configured:
             raise RuntimeError("GROQ_API_KEY is not configured")
         json_schema = schema.model_json_schema()
+        
+        def _make_strict(node):
+            if isinstance(node, dict):
+                if "properties" in node:
+                    node["required"] = list(node["properties"].keys())
+                    node["additionalProperties"] = False
+                for v in node.values():
+                    _make_strict(v)
+            elif isinstance(node, list):
+                for item in node:
+                    _make_strict(item)
+                    
+        _make_strict(json_schema)
+
         response = self.client.chat.completions.create(
             model=self.settings.llm_model,
             messages=[

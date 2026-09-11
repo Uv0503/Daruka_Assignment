@@ -39,7 +39,7 @@ class Database:
 
     def create_session(self) -> dict:
         session_id, site_id, now = str(uuid4()), str(uuid4()), utcnow()
-        profile = {"site_id": site_id, "current": {}, "unresolved_conflicts": [], "declined_questions": [], "last_question_fields": [], "notes": [], "hypothetical": None}
+        profile = {"site_id": site_id, "current": {}, "unresolved_conflicts": [], "declined_questions": [], "last_question_fields": [], "asked_question_fields": [], "notes": [], "hypothetical": None}
         with self.connection() as conn:
             conn.execute("INSERT INTO sessions VALUES (?, ?, ?, ?)", (session_id, site_id, now, now))
             conn.execute("INSERT INTO site_states VALUES (?, ?, ?, 0)", (session_id, json.dumps(profile), "{}"))
@@ -52,6 +52,8 @@ class Database:
             return None
         state = json.loads(row["profile_json"])
         state["last_event_seq"] = row["last_event_seq"]
+        # Backfill for sessions created before asked_question_fields was added
+        state.setdefault("asked_question_fields", [])
         return state
 
     def save_turn(self, *, session_id: str, state: dict, events: list[dict], turn_id: str, request: dict, response: dict, trace: dict) -> None:

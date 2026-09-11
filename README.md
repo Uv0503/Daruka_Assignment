@@ -61,7 +61,7 @@ API_BASE_URL=http://127.0.0.1:8000 uv run streamlit run ui/app.py --server.addre
 
 Open the local URL printed by Streamlit. If ports 8000/8501 are occupied, use
 8010/8510 respectively and set `API_BASE_URL=http://127.0.0.1:8010` in the UI
-terminal. The currently checked demo uses `http://127.0.0.1:8510`.
+terminal. The currently checked demo uses `http://127.0.0.1:8501`.
 The UI sends only HTTP requests to the
 API; it never opens SQLite or Chroma directly. Do not use more than one API
 worker for this local SQLite demonstration.
